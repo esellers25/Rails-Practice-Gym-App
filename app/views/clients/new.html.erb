@@ -1,0 +1,15 @@
+<h2>New Client Form</h2>
+
+<%= form_for @client do |f|%>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :age %>
+<%= f.number_field :age%>
+
+<%# <%= f.label :gyms%>
+<%# <%= f.collection_check_boxes :gym_ids, @gyms, :id, :%> %> %>
+
+<%= f.submit%>
+<%end%>

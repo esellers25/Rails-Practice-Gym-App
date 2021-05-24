@@ -1,0 +1,5 @@
+<h2>Gym List</h2>
+
+<% @gyms.each do |gym|%>
+<h4><%= link_to gym.name, gym_path(gym)%></h4>
+<%end%>

@@ -1,0 +1,13 @@
+<h3><%= @client.name%> </h3>
+<h4>Age : <%= @client.age%></h4>
+<h4>Gyms :</h4>
+<% @client.gyms.each do |gym|%>
+<li><%= link_to gym.name, gym_path(gym) %></li><br>
+<%end%>
+
+<h4>Total Membership Fees: <%= @client.total_membership_fees %></h4>
+<%= button_to "Back", {action: "index"}, method: "get"%><br>
+
+<%= form_for @client, method: "delete" do |f|%>
+<%= f.submit "Delete Client"%>
+<%end %>

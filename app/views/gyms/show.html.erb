@@ -1,0 +1,13 @@
+<h1><%= @gym.name %></h1>
+<h2><%= @gym.address %></h2>
+
+<h3>Clients</h3>
+<% @gym.clients.each do |client|%>
+<li> <%= link_to client.name, client_path(client)%></li><br>
+<%end %>
+
+<%= button_to "Back", {action: "index"}, method: "get"%><br>
+
+<%= form_for @gym, method: "delete" do |f|%>
+<%= f.submit "Delete Gym"%>
+<%end %>
