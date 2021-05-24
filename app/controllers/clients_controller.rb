@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
 
     def destroy 
         @client = Client.find(params[:id])
+        @client.memberships.destroy_all 
         @client.destroy 
         redirect_to clients_path 
     end 
@@ -19,8 +20,14 @@ class ClientsController < ApplicationController
     end 
 
     def create 
-        @client = Client.create(client_params)
-        redirect_to @client 
+        @client = Client.new(client_params)
+        if @client.valid? 
+            @client.save 
+            redirect_to @client 
+        else 
+            flash[:errors].full_messages
+            redirect_to new_client_path
+        end 
     end 
 
     private 

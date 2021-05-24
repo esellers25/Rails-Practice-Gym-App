@@ -10,6 +10,7 @@ class GymsController < ApplicationController
 
     def destroy 
         @gym = Gym.find(params[:id])
+        @gym.memberships.destroy_all 
         @gym.destroy 
         redirect_to gyms_path 
     end 
@@ -19,8 +20,14 @@ class GymsController < ApplicationController
     end 
 
     def create 
-        @gym = Gym.create(gym_params)
-        redirect_to @gym 
+        @gym = Gym.new(gym_params)
+        if @gym.valid? 
+            @gym.save 
+            redirect_to @gym
+        else 
+            flash[:errors] = @gym.errors.full_messages
+            redirect_to new_gym_path 
+        end 
     end 
 
     private 
